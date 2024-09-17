@@ -295,16 +295,16 @@ export function RadarComponent() {
                   <p>{resultData.text}</p>
                 </div>
                 <Button className="w-full mt-4" onClick={reset}>
-                  Reset
+                  kembali
                 </Button>
               </div>
             )}
           </>
         ) : (
           <div className="space-y-4 grid content-center w-full">
-            <p className="text-2xl capitalize">apa role kamu facebook</p>
+            <p className="text-2xl capitalize font-bold">apa role kamu di facebook</p>
             <div className="space-y-2">
-              <label>nama</label>
+              <label>nama/username kamu</label>
               <Input
                 className=" transition-all"
                 value={name}
@@ -321,7 +321,7 @@ export function RadarComponent() {
             />
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label>foto</label>
+                <label>foto kamu</label>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Info size={16} />
@@ -331,10 +331,7 @@ export function RadarComponent() {
                     className="w-60 sm:max-w-screen-sm"
                   >
                     <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Quo, eos culpa sed quam nesciunt praesentium nobis, ab
-                      consequatur ut eum ex. Quia harum repellendus, neque animi
-                      ipsa laudantium numquam sunt.
+                      kalo gak mau pake foto asli pake foto profil aja ga apa-apa sih. foto cuma di pake di sisi klien & gak akan di upload
                     </p>
                   </PopoverContent>
                 </Popover>
