@@ -6,12 +6,6 @@ import { Input } from "./ui/input";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Info } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 // Fungsi untuk menghasilkan nilai acak berbasis Base64
