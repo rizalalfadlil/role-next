@@ -1,11 +1,15 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { Input } from "./ui/input";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { Info } from "lucide-react";
+import { Info, Loader, LoaderCircle, Upload } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 // Fungsi untuk menghasilkan nilai acak berbasis Base64
@@ -53,68 +57,143 @@ function splitStringIntoParts(str: string, parts: number) {
 export function RadarComponent() {
   const [chartData, setChartData]: any = useState([]);
   const [fileUrl, setfileUrl] = useState("");
-  const fileInputRef = useRef(null);
+  const fileInputRef:any = useRef(null);
   const [name, setname] = useState("");
-
+  const [loading, setloading] = useState(false);
   const [resultData, setResultData]: any = useState({});
   const handleImageUpload = (event: any) => {
     const file = event.target.files[0];
     setfileUrl(URL.createObjectURL(file));
     const reader = new FileReader();
 
+    function triggerLoading() {
+      setloading(true);
+      setTimeout(() => {
+        setloading(false);
+      }, 2000);
+    }
     reader.onloadend = () => {
+      triggerLoading();
       const base64String = reader.result;
       // Dapatkan nilai acak dari gambar
-      const values = getRandomValuesFromImage(base64String, 6);
+      const values = getRandomValuesFromImage(base64String, 10);
 
       // Format data untuk chart
       const newChartData = [
         {
-          category: "243",
+          category: "sepuh",
           value: values[0],
           text: [
-            { img: "https://picsum.photos/id/1/200/300", text: "asdasd" },
-            { img: "https://picsum.photos/id/2341/200/300", text: "asdf asd" },
+            {
+              img: "./meme/puh.jpeg",
+              text: "puh sepuh dewa leluhur, aku kpn yh",
+            },
+            {
+              img: "./meme/puh2.jpeg",
+              text: "sepuh jago gambar/ngedit/fps/ritim/semuanya, aku kpn yh",
+            },
           ],
         },
         {
-          category: "Aasasddasd",
+          category: "caboel",
           value: values[1],
           text: [
-            { img: "https://picsum.photos/id/121/200/300", text: "asdasd" },
-            { img: "https://picsum.photos/id/221/200/300", text: "asdf asd" },
+            {
+              img: "./meme/bul.jpeg",
+              text: "orang komen caboel mulu ke gambar 2d sebaiknya jangan ditemenin ntar ketularan",
+            },
+            {
+              img: "./meme/bul2.jpeg",
+              text: "orang gak bisa nahan hawa nafsu sama karakter kartun",
+            },
           ],
         },
         {
-          category: "Aasda32sd",
+          category: "kroco",
           value: values[2],
           text: [
-            { img: "https://picsum.photos/id/31/200/300", text: "asdasd" },
-            { img: "https://picsum.photos/id/2341/200/300", text: "asdf asd" },
+            {
+              img: "./meme/co.jpeg",
+              text: "orang kroco gak dikenal siapa siapa",
+            },
+            { img: "./meme/co2.jpeg", text: "siapa yh" },
           ],
         },
         {
-          category: "Aasdasd",
+          category: "jomok",
           value: values[3],
           text: [
-            { img: "https://picsum.photos/id/111/200/300", text: "asdasd" },
-            { img: "https://picsum.photos/id/232/200/300", text: "asdf asd" },
+            {
+              img: "./meme/mok.jpeg",
+              text: "jomok banget suka kirim stiker orang hitam semoga cepet sadar",
+            },
+            { img: "./meme/mok2.jpeg", text: "asdf asd" },
           ],
         },
         {
-          category: "235Aasdasd",
+          category: "pedo",
           value: values[4],
           text: [
-            { img: "https://picsum.photos/id/15/200/300", text: "asdasd" },
-            { img: "https://picsum.photos/id/441/200/300", text: "asdf asd" },
+            { img: "./meme/pdf.jpeg", text: "bang sadar bang" },
+            {
+              img: "./meme/pdf.jpeg",
+              text: "halo perlindungan anak indonesia",
+            },
           ],
         },
         {
-          category: "Aas235dasd",
+          category: "rasis",
           value: values[5],
           text: [
-            { img: "https://picsum.photos/id/21/200/300", text: "asdasd" },
-            { img: "https://picsum.photos/id/211/200/300", text: "asdf asd" },
+            { img: "./meme/rasis.jpeg", text: "saiba momoi" },
+            { img: "./meme/rasis2.jpeg", text: "n-" },
+          ],
+        },
+        {
+          category: "chef",
+          value: values[6],
+          text: [
+            {
+              img: "./meme/chef.jpeg",
+              text: "penggoreng handal gak pernah kelewat drama apapun",
+            },
+            {
+              img: "./meme/chef2.jpeg",
+              text: "setiap ada drama langsung gass goreng aja ygy gak peduli faktanya gimana",
+            },
+          ],
+        },
+        {
+          category: "klemer",
+          value: values[7],
+          text: [
+            { img: "./meme/klemer.jpeg", text: "yahaha waifunya musiman" },
+            {
+              img: "./meme/klemer2.jpeg",
+              text: "bit banget apa apa di klem asw",
+            },
+          ],
+        },
+        {
+          category: "artis",
+          value: values[8],
+          text: [
+            {
+              img: "./meme/tis.jpeg",
+              text: "artis banget sejam posting langsung satu juta riek",
+            },
+            {
+              img: "./meme/tis2.jpeg",
+              text: "kpn yh bisa sejuta riek kayak artis ini",
+            },
+          ],
+        },
+        {
+          category: "karbit",
+          value: values[9],
+          text: [
+            { img: "./meme/bit.jpeg", text: "asdasd" },
+            { img: "./meme/bit2.jpeg", text: "asdf asd" },
           ],
         },
       ];
@@ -167,52 +246,63 @@ export function RadarComponent() {
   }
   return (
     <div className="pt-4">
-      <CardContent className={`space-y-8 ${chartData.length > 0 && "grid sm:grid-cols-2 place-content-center"}`}>
+      <CardContent
+        className={`space-y-8 ${
+          chartData.length > 0 && "grid sm:grid-cols-2 place-content-center"
+        }`}
+      >
         {chartData.length > 0 ? (
           <>
             <div className="space-y-4 grid place-content-center">
               <p className="text-lg font-bold uppercase">{name}</p>
               <div
-                className="w-40 aspect-square bg-cover bg-center bg-no-repeat border rounded-md"
+                className="min-w-60 aspect-square bg-cover bg-center bg-no-repeat border rounded-md"
                 style={{ backgroundImage: `url("${fileUrl}")` }}
               />
             </div>
 
-            <div className="">
-              <ChartContainer config={chartConfig} className=" aspect-square">
-                <RadarChart
-                  data={chartData}
-                  startAngle={80}
-                >
-                    <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-                  <PolarAngleAxis dataKey="category" orientation="inside"/>
-                  <PolarGrid />
-                  
-                  <Radar
-                    name="score"
-                    dataKey="value"
-                    stroke="#1c5ad5"
-                    fill="#1c5ad5"
-                    fillOpacity={0.1}
-                  />
-                </RadarChart>
-              </ChartContainer>
-              <div className="grid place-content-center text-center space-y-4">
-                <p>{name} you are</p>
-                <p className="font-bold text-lg">{resultData.category}</p>
-                <div
-                  style={{ backgroundImage: `url("${resultData.image}")` }}
-                  className="w-40 bg-cover rounded-md bg-center bg-no-repeat aspect-square"
-                />
-                <p>{resultData.text}</p>
+            {loading ? (
+              <div className="w-full h-full flex items-center justify-center gap-4 border-t-2 sm:border-t-0 sm:border-s-2">
+                <LoaderCircle className="animate-spin"/>
+                <span>loading boongan</span>
               </div>
-              <Button className="w-full mt-4" onClick={reset}>
-                Reset
-              </Button>
-            </div>
+            ) : (
+              <div className="grid justify-center w-full border-t-2 sm:border-t-0 sm:border-s-2">
+                <ChartContainer config={chartConfig} className=" aspect-square">
+                  <RadarChart data={chartData.slice(0, 9)} startAngle={45}>
+                    <ChartTooltip
+                      cursor={false}
+                      content={<ChartTooltipContent />}
+                    />
+                    <PolarAngleAxis dataKey="category" orientation="inner" />
+                    <PolarGrid />
+                    <Radar
+                      name="score"
+                      dataKey="value"
+                      stroke="#1c5ad5"
+                      fill="#1c5ad5"
+                      fillOpacity={0.5}
+                    />
+                  </RadarChart>
+                </ChartContainer>
+                <div className="grid place-content-center text-center space-y-4 py-4 border-t-2">
+                  <p>{name}</p>
+                  <p className="font-bold text-lg">{resultData.category}</p>
+                  <div
+                    style={{ backgroundImage: `url("${resultData.image}")` }}
+                    className="bg-cover min-w-60 rounded-md bg-center bg-no-repeat aspect-square"
+                  />
+                  <p>{resultData.text}</p>
+                </div>
+                <Button className="w-full mt-4" onClick={reset}>
+                  Reset
+                </Button>
+              </div>
+            )}
           </>
         ) : (
           <div className="space-y-4 grid content-center w-full">
+            <p className="text-2xl capitalize">apa role kamu di </p>
             <div className="space-y-2">
               <label>nama</label>
               <Input
@@ -236,7 +326,10 @@ export function RadarComponent() {
                   <PopoverTrigger asChild>
                     <Info size={16} />
                   </PopoverTrigger>
-                  <PopoverContent side="left" className="w-60 sm:max-w-screen-sm">
+                  <PopoverContent
+                    side="left"
+                    className="w-60 sm:max-w-screen-sm"
+                  >
                     <p>
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Quo, eos culpa sed quam nesciunt praesentium nobis, ab
@@ -253,7 +346,7 @@ export function RadarComponent() {
                 className=" w-full"
                 variant="secondary"
               >
-                upload
+                <Upload />
               </Button>
             </div>
           </div>
