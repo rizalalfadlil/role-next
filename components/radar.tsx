@@ -302,7 +302,7 @@ export function RadarComponent() {
           </>
         ) : (
           <div className="space-y-4 grid content-center w-full">
-            <p className="text-2xl capitalize">apa role kamu di </p>
+            <p className="text-2xl capitalize">apa role kamu facebook</p>
             <div className="space-y-2">
               <label>nama</label>
               <Input
